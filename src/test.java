@@ -5,6 +5,7 @@ import edu.princeton.cs.algs4.Stack;
 import static edu.princeton.cs.algs4.StdRandom.random;
 
 public class test {
+
     //最大公约数欧几里得算法
     public static  int greatestCommon(int p , int q){
 //        System.out.println(p+"  "+q);
@@ -54,10 +55,24 @@ public class test {
         return numbertorStack.pop();
     }
 
+    //合并两个有序数组
+    public static int[]  merge(int[] A, int m, int[] B, int n){
+        int a = m-1,b = n-1, cur = m+n-1;
+        int[] C = new int[m+n];
+        while(a>=0&&b>=0){
+            C[cur--] = A[a] > B[b] ? A[a--]:B[b--];
+        }
+        while(a >= 0){
+            C[cur--] = A[a--];
+        }
+        while(b >= 0){
+            C[cur--] = B[b--];
+        }
+        return C;
+    }
+
     public static void main(String[] args) {
-        String string = "(((1+20)/3)+((1+2)*3))";
-        double v = stringEasyExpressionCalculate(string);
-        System.out.println(v);
+
     }
 
 
