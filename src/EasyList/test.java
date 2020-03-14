@@ -1,4 +1,4 @@
-package day3_13;
+package EasyList;
 
 import edu.princeton.cs.algs4.Queue;
 

@@ -1,10 +1,6 @@
-package day3_13;
+package EasyList;
 
-import edu.princeton.cs.algs4.SET;
-
-import java.security.Key;
 import java.util.*;
-import java.util.function.Consumer;
 
 public class EasyListMap<K,V> implements Map {
 

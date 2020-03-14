@@ -1,4 +1,4 @@
-package day3_13;
+package EasyList;
 
 import java.util.Iterator;
 import java.util.function.Consumer;

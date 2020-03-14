@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.Stack;
 
 import static edu.princeton.cs.algs4.StdRandom.random;
 
-public class test {
+public class ChapterOne {
 
     //最大公约数欧几里得算法
     public static  int greatestCommon(int p , int q){
