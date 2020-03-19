@@ -1,9 +1,11 @@
+package sort;
 
-public class MergeSort2 {
+public class Merge {
     private static Comparable[] aux;
 
     //自底向上实现排序,方法入口
-    public static void sort(Comparable[] a, int length){
+    public static void sort(Comparable[] a){
+        int length = a.length;
         if (a.length == 0){new ArrayIndexOutOfBoundsException();}
         aux = new Comparable[length];
         int k = 2;
@@ -46,7 +48,7 @@ public class MergeSort2 {
         for (int i = 0; i < a.length; i++) {
             a[i] = 10-i;
         }
-        MergeSort2.sort(a,a.length);
+        Merge.sort(a);
         for (Integer integer : a) {
             System.out.println(integer);
         }

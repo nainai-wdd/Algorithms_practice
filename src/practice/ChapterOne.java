@@ -1,3 +1,5 @@
+package practice;
+
 import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.Stack;

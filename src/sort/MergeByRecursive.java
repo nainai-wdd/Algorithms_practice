@@ -1,9 +1,11 @@
+package sort;
 
-public class MergeSort1 {
+public class MergeByRecursive {
     private static Comparable[] aux;
 
     //递归实现排序,方法入口
-    public static void sort(Comparable[] a, int length){
+    public static void sort(Comparable[] a){
+        int length = a.length;
         aux = new Comparable[length];
         sort(a, 0,  length-1);
     }
@@ -13,7 +15,7 @@ public class MergeSort1 {
         int mid = head + (rear-head)/2;
         if (head >= rear){return;}
         sort(a, head, mid);
-        sort(a, mid + 1, rear);
+         sort(a, mid + 1, rear);
         merge(a, head, mid, rear);
     }
 
@@ -35,7 +37,7 @@ public class MergeSort1 {
 
     public static void main(String[] args) {
         Integer[] a = {9,8,7,6,6,7,8,9};
-        MergeSort1.sort(a,a.length);
+        MergeByRecursive.sort(a);
         for (Integer integer : a) {
             System.out.println(integer);
         }
