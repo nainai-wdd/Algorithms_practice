@@ -3,6 +3,7 @@ package collection.pq;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -155,7 +156,7 @@ public class MaxPQImpl<Key> implements Iterable<Key>{
         MaxPQImpl<Comparable> integers = new MaxPQImpl<>(a);
         boolean maxHeap = integers.isMaxHeap();
         System.out.println(maxHeap);
-
+        Comparable max = integers.max();
 
 
     }

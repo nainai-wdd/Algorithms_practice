@@ -3,6 +3,8 @@ package collection.map;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class BinarySearchST<Key extends Comparable<Key>, Value> {
     private Key[] keys;
@@ -14,7 +16,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> {
         this(2);
     }
 
-    public BinarySearchST(int init) {
+    private BinarySearchST(int init) {
         keys = (Key[]) new Comparable[init];
         values = (Value[]) new Object[init];
         n = 0;
@@ -22,8 +24,8 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> {
 
     //扩容
     private void expansion() {
-        Key[] es = (Key[]) new Comparable[n * 4];
-        Value[] vs = (Value[]) new Object[n * 4];
+        Key[] es = (Key[]) new Comparable[n * 2];
+        Value[] vs = (Value[]) new Object[n * 2];
         for (int i = 0; i < keys.length; i++) {
             es[i] = keys[i];
             vs[i] = values[i];
@@ -33,6 +35,9 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> {
     }
 
     public void put(Key key, Value value) {
+        if (key == null) throw new IllegalArgumentException("argument to put() is null");
+        if (value == null) delete(key);
+        else {
         int i = rank(key);
         // key is already in table
         if (i < n && ((Comparable<Key>)keys[i]).compareTo(key) == 0) {
@@ -48,16 +53,26 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> {
         values[i] = value;
         n++;
     }
+    }
 
 
     public Value get(Key key) {
+        if (key == null) throw new IllegalArgumentException("argument to get() is null");
         int i = rank(key);
         if (keys[i] != key) return null;
         else return values[i];
     }
 
     public void delete(Key key) {
-        put(key, null);
+        if (n == 0) throw new NoSuchElementException("calls delete() with empty symbol table");
+        if (key == null) throw new IllegalArgumentException("argument to delete() is null");
+
+        if (n >= keys.length) expansion();
+        for (int i = rank(key); i < n-1; i++){
+            keys[i] = keys[i+1];
+            values[i] = values[i+1];
+        }
+        n--;
     }
 
     public boolean contains(Key key) {
@@ -73,12 +88,14 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> {
     }
 
     public Key min() {
-        return null;
+        if (n == 0) throw new NoSuchElementException("calls min() with empty symbol table");
+        return keys[0];
     }
 
 
     public Key max() {
-        return null;
+        if (n == 0) throw new NoSuchElementException("calls max() with empty symbol table");
+        return keys[n-1];
     }
 
     public Key floor(Key key) {
@@ -148,20 +165,23 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> {
 
 
     public static void main(String[] args) {
-        BinarySearchST<String, Integer> st = new BinarySearchST<String, Integer>();
-        for (int i = 0; i < 10; i++) {
-            String key = String.valueOf(9-i);
-            st.put(key, i);
+        BinarySearchST<Integer, Integer> st = new BinarySearchST<Integer, Integer>();
+        for (int i = 0; i < 5; i++) { ;
+            st.put(i, i);
         }
-        for (String s : st.keys())
+        Iterable<Integer> keys = st.keys();
+        for (Integer s : st.keys())
             StdOut.println(s + " " + st.get(s));
-        for (int i = 0; i < 10; i++) {
-            String key = String.valueOf(9-i);
-            st.put(key, null);
+        Scanner scanner = new Scanner(System.in);
+        for (int i = 0; i < 111; i++) {
+            int key1 = scanner.nextInt();
+            st.delete(key1);
+            if (st.get(key1) == null){
+                System.out.println("删除成功");
+            }
+            for (Integer s : st.keys())
+                StdOut.println(s + " " + st.get(s));
         }
-        for (String s : st.keys())
-            StdOut.println(s + " " + st.get(s));
-
     }
 }
 

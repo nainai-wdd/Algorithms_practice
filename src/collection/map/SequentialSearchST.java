@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class SequentialSearchST<Key extends Comparable<Key>,Value> {
+public class SequentialSearchST<Key,Value> {
 
     private Node head;
     private int n;
@@ -64,11 +64,6 @@ public class SequentialSearchST<Key extends Comparable<Key>,Value> {
 
     public int size(){
         return n;
-    }
-    public int size(Key lo,Key hi){
-        if (hi.compareTo(lo) < 0) return 0;
-        else if (contains(hi)) return rank(hi) - rank(lo) +1;
-        else return rank(hi) - rank(lo);
     }
 
     public Key min(){
