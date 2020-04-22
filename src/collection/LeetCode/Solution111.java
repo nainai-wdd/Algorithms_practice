@@ -4,12 +4,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Solution111 {
-    public class TreeNode {
+    class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
         TreeNode(int x) { val = x; }
     }
+
     public int minDepth(TreeNode root) {
         if(root == null) return 0;
         Queue<TreeNode> queue = new LinkedList<TreeNode>();

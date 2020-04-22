@@ -1,7 +1,7 @@
 package collection.LeetCode;
 
 public class Solution226 {
-    public class TreeNode {
+    class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;

@@ -11,10 +11,10 @@ public class SortCompare {
         Stopwatch time = new Stopwatch();
         if (alg == "insert"){ Insert.sort(a); }
         if (alg == "select"){ Selection.sort(a);}
-        if (alg == "shell"){ Shell.sort(a);}
         if (alg == "merge"){Merge.sort(a);}
         if (alg == "mergeby"){ MergeByRecursive.sort(a);}
         if (alg == "quick"){ Quick.sort(a);}
+        if (alg == "shell"){ Shell.sort(a);}
         return time.elapsedTime();
     }
 
@@ -38,8 +38,8 @@ public class SortCompare {
     }
 
     public static void main(String[] args) {
-        int N = 8000000;
-        int T = 2;
+        int N = 16;
+        int T = 2000000;
         double merge = timeRandomInput("merge", N, T);
         System.out.println("merge: "+merge);
         double mergeby = timeRandomInput("mergeby", N, T);
@@ -48,10 +48,10 @@ public class SortCompare {
         System.out.println("quick: "+quick);
         double shell = timeRandomInput("shell", N, T);
         System.out.println("shell: "+shell);
-//        double select = timeRandomInput("select", N, T);
-//        System.out.println("select: "+select);
-//        double insert = timeRandomInput("insert", N, T);
-//        System.out.println("insert: "+insert);
+        double select = timeRandomInput("select", N, T);
+        System.out.println("select: "+select);
+        double insert = timeRandomInput("insert", N, T);
+        System.out.println("insert: "+insert);
 
     }
 }

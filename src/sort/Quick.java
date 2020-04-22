@@ -31,14 +31,14 @@ public class Quick {
         if (a[lo + 3].compareTo(a[lo]) > 0)     exch(a, lo + 3, hi);
         if (a[lo].compareTo(a[hi]) > 0)         exch(a, lo, hi);
         Comparable v = a[lo];
-        while (i < gt) {
+        while (i <= gt) {
             int comp = v.compareTo(a[i]);
             if (comp > 0) exch(a, i, gt--);
             else if (comp < 0) exch(a, i++, lt++);
             else i++;
         }
         sort(a, lo, lt - 1);
-        sort(a, gt - 1, hi);
+        sort(a, gt + 1, hi);
     }
 
     private static void insertSort(Comparable[] a, int lo, int hi) {

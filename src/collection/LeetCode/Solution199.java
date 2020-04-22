@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class Solution199 {
-    public class TreeNode {
+    class TreeNode {
       int val;
       TreeNode left;
       TreeNode right;
