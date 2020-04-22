@@ -97,7 +97,6 @@ public class RedBlackBST2<Key extends Comparable<Key>, Value> {
         if (compare < 0) x.left = put(x.left, key, value);
         else if (compare > 0) x.right = put(x.right, key, value);
         else x.value = value;
-
         return balance(x);
     }
 

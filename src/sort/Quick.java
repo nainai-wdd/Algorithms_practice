@@ -2,28 +2,63 @@ package sort;
 
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.Random;
+
 public class Quick {
     //算法主入口
     public static void sort(Comparable[] a) {
+        if (a.length == 0) return;
         //打乱数组
-        StdRandom.shuffle(a);
+//        StdRandom.shuffle(a);
         sort(a,0,a.length-1);
     }
 
     //算法主逻辑
     private static void sort(Comparable[] a, int lo, int hi){
-        if (lo >= hi) return;
-        int p = partition(a,lo,hi);
-        sort(a,lo,p-1);
-        sort(a,p+1,hi);
+        //切换到插入排序
+        if (hi - lo < 8) {
+            insertSort(a, lo, hi);
+            return;
+        }
+
+//        int p = partition(a,lo,hi);
+//        sort(a, lo, p - 1);
+//        sort(a, p + 1, hi);
+        //三取样切分（交换次数多）
+        int lt = lo, i = lo + 1, gt = hi;
+        //三分取样
+        if (a[lo + 3].compareTo(a[hi]) > 0)     exch(a, lo + 3, hi);
+        if (a[lo + 3].compareTo(a[lo]) > 0)     exch(a, lo + 3, hi);
+        if (a[lo].compareTo(a[hi]) > 0)         exch(a, lo, hi);
+        Comparable v = a[lo];
+        while (i < gt) {
+            int comp = v.compareTo(a[i]);
+            if (comp > 0) exch(a, i, gt--);
+            else if (comp < 0) exch(a, i++, lt++);
+            else i++;
+        }
+        sort(a, lo, lt - 1);
+        sort(a, gt - 1, hi);
+    }
+
+    private static void insertSort(Comparable[] a, int lo, int hi) {
+        Comparable t;
+        for (int i = lo; i < hi + 1; i++)
+            for (int j = i; j > lo; j--)
+                if (a[j - 1].compareTo(a[j]) > 0)
+                    exch(a, j - 1, j);
     }
 
     private static int partition(Comparable[] a, int lo, int hi){
         int lt = lo, gt = hi+1;
+        //三分取样
+        if (a[lo + 3].compareTo(a[hi]) > 0)     exch(a, lo + 3, hi);
+        if (a[lo + 3].compareTo(a[lo]) > 0)     exch(a, lo + 3, hi);
+        if (a[lo].compareTo(a[hi]) > 0)         exch(a, lo, hi);
         Comparable v = a[lo];
         while(true){
-            while ( less(a[++lt],v)) if (lt == hi) break;
-            while ( less(v,a[--gt])) if (gt == lo) break;
+            while ( less(a[++lt],v));
+            while ( less(v,a[--gt]));
             if (lt >= gt) break;
             exch(a,lt,gt);
         }

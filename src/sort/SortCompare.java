@@ -3,6 +3,8 @@ package sort;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
+import java.util.Random;
+
 //执行一次的时间
 public class SortCompare {
     private static double time(String alg, Comparable[] a){
@@ -19,11 +21,16 @@ public class SortCompare {
     public static double timeRandomInput(String alg, int N, int T){
         double total = 0.0;
         Double[] a = new Double[N];
+        Integer[] b = new Integer[N];
+        Random rand = new Random();
         for (int i = 0; i < T; i++) {
+//            for (int i1 = 0; i1 < N; i1++) {
+//                a[i1] = StdRandom.uniform();
+//            }
             for (int i1 = 0; i1 < N; i1++) {
-                a[i1] = StdRandom.uniform();
+                b[i1] = rand.nextInt(100);
             }
-            total = total+time(alg,a);
+            total = total+time(alg,b);
         }
 
         return total;
@@ -31,8 +38,8 @@ public class SortCompare {
     }
 
     public static void main(String[] args) {
-        int N = 1000000;
-        int T = 4;
+        int N = 8000000;
+        int T = 2;
         double merge = timeRandomInput("merge", N, T);
         System.out.println("merge: "+merge);
         double mergeby = timeRandomInput("mergeby", N, T);
